@@ -1,20 +1,27 @@
 import { ContactItem } from 'components/contactItem/ContactItem';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import styles from './ContactsList.module.css'
 
-export const ContactsList = ({ contacts, deleteItem }) => {
+export const ContactsList = () => {
+
+  const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter)
+  const viewContacts = contacts
+                    .filter(cont => cont.name.toLowerCase().includes(filter))
+                    .sort((first, second) => first.name.localeCompare(second.name));
+
   const {contactsList} = styles
+
   return (
     <div>
-      {contacts.length > 0 ? (
+      {contacts?.length > 0 ? (
         <ul className={contactsList}>
-          {contacts.map(({ id, name, number }) => (
+          {viewContacts.map(({ id, name, number }) => (
             <ContactItem
               key={id}
               id={id}
               name={name}
               number={number}
-              deleteItem={deleteItem}
             />
           ))}
         </ul>
@@ -23,9 +30,4 @@ export const ContactsList = ({ contacts, deleteItem }) => {
       )}
     </div>
   );
-};
-
-ContactsList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  deleteItem: PropTypes.func.isRequired,
 };

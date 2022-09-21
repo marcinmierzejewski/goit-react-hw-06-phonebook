@@ -1,26 +1,26 @@
-import { useState, useEffect } from 'react';
+// import { useState } from 'react';
 
 import { PhoneBook } from './phoneBook/PhoneBook';
 import { ContactsList } from './contactsList/ContactsList';
-import { SearchFilter } from './searchFilter/SearchFilter';
+// import { SearchFilter } from './searchFilter/SearchFilter';
 import { Section } from './section/Section';
 import styles from './App.module.css';
 
 export const App = () => {
-  const initiateContacts = () =>
-    JSON.parse(localStorage.getItem('LOCALSTORAGE_KEY')) || [];
+  // const initiateContacts = () =>
+  //   JSON.parse(localStorage.getItem('LOCALSTORAGE_KEY')) || [];
 
-  const [contacts, setContacts] = useState(initiateContacts);
-  const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useState(initiateContacts);
+  // const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    try {
-      const initiateContacts = JSON.stringify(contacts);
-      localStorage.setItem('LOCALSTORAGE_KEY', initiateContacts);
-    } catch (error) {
-      console.error('Set state error: ', error.message);
-    }
-  }, [contacts]);
+  // useEffect(() => {
+  //   try {
+  //     const initiateContacts = JSON.stringify(contacts);
+  //     localStorage.setItem('LOCALSTORAGE_KEY', initiateContacts);
+  //   } catch (error) {
+  //     console.error('Set state error: ', error.message);
+  //   }
+  // }, [contacts]);
 
   // useEffect(() => {}, [filter]);
 
@@ -32,17 +32,17 @@ export const App = () => {
   //   }
   // };
 
-  const searchByName = e => {
-    setFilter(() => e.target.value.toLowerCase());
-  };
+  // const searchByName = e => {
+  //   setFilter(() => e.target.value.toLowerCase());
+  // };
 
-  const viewContacts = () => {
-    return contacts.filter(cont => cont.name.toLowerCase().includes(filter));
-  };
+  // const viewContacts = () => {
+  //   return contacts.filter(cont => cont.name.toLowerCase().includes(filter));
+  // };
 
-  const deleteContact = id => {
-    setContacts(() => contacts.filter(cont => cont.id !== id));
-  };
+  // const deleteContact = id => {
+  //   setContacts(() => contacts.filter(cont => cont.id !== id));
+  // };
 
   const { wrapper } = styles;
   return (
@@ -55,8 +55,8 @@ export const App = () => {
       </Section>
 
       <Section title="Contacts">
-        <SearchFilter searchByName={searchByName} />
-        <ContactsList contacts={viewContacts()} deleteItem={deleteContact} />
+        {/* <SearchFilter searchByName={searchByName} /> */}
+        <ContactsList  />
       </Section>
     </div>
   );

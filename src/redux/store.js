@@ -3,9 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import contactsReducer from './contactsSlice';
 
 const store = configureStore({
-  reducer: {
-    contacts: contactsReducer,
-  }
+  reducer: contactsReducer,
 });
 
 export default store;
