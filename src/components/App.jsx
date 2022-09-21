@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 import { PhoneBook } from './phoneBook/PhoneBook';
 import { ContactsList } from './contactsList/ContactsList';
-import { nanoid } from 'nanoid';
 import { SearchFilter } from './searchFilter/SearchFilter';
 import { Section } from './section/Section';
 import styles from './App.module.css';
@@ -25,13 +24,13 @@ export const App = () => {
 
   // useEffect(() => {}, [filter]);
 
-  const addNewContact = ({ name, number }) => {
-    if (contacts.find(cont => cont.name === name)) {
-      alert(`${name} is already in contacts`);
-    } else {
-      setContacts(oldCont => [...oldCont, { name, number, id: nanoid() }]);
-    }
-  };
+  // const addNewContact = ({ name, number }) => {
+  //   if (contacts.find(cont => cont.name === name)) {
+  //     alert(`${name} is already in contacts`);
+  //   } else {
+  //     setContacts(oldCont => [...oldCont, { name, number, id: nanoid() }]);
+  //   }
+  // };
 
   const searchByName = e => {
     setFilter(() => e.target.value.toLowerCase());
@@ -52,7 +51,7 @@ export const App = () => {
         React homework 6 - Redux phonebook
       </h1>
       <Section title="Phonebook">
-        <PhoneBook newContact={addNewContact} />
+        <PhoneBook  />
       </Section>
 
       <Section title="Contacts">
