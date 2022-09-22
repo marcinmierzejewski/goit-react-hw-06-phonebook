@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './PhoneBook.module.css';
 import { addContact } from 'redux/contactsSlice';
@@ -5,7 +6,7 @@ import { nanoid } from 'nanoid';
 
 export const PhoneBook = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.items);
 
   const saveToLocalStorage = item => {
     try {
@@ -15,6 +16,10 @@ export const PhoneBook = () => {
       console.error('Save error: ', error.message);
     }
   };
+  
+ useEffect(() => {
+  saveToLocalStorage(contacts);
+}, [contacts]);
 
   const valueSubmit = e => {
     e.preventDefault();
@@ -23,7 +28,7 @@ export const PhoneBook = () => {
     const number = form.number.value;
     console.log(name, number);
     dispatch(addContact({ name, number, id: nanoid() }));
-    saveToLocalStorage(contacts);
+    // saveToLocalStorage(contacts);
     form.reset();
   };
 
