@@ -3,33 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './PhoneBook.module.css';
 import { addContact } from 'redux/contactsSlice';
 import { nanoid } from 'nanoid';
+import { saveToLocalStorage } from 'services/localStorageServices';
 
 export const PhoneBook = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
 
-  const saveToLocalStorage = item => {
-    try {
-      const saveContacts = JSON.stringify(item);
-      localStorage.setItem('LOCALSTORAGE_KEY', saveContacts);
-    } catch (error) {
-      console.error('Save error: ', error.message);
-    }
-  };
-  
- useEffect(() => {
-  saveToLocalStorage(contacts);
-}, [contacts]);
+  useEffect(() => {
+    saveToLocalStorage(contacts);
+  }, [contacts]);
 
   const valueSubmit = e => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const number = form.number.value;
+
     console.log(name, number);
-    dispatch(addContact({ name, number, id: nanoid() }));
-    // saveToLocalStorage(contacts);
-    form.reset();
+    console.log(contacts);
+
+    if (contacts.find(cont => cont.name === name)) {
+      alert(`${name} is already in contacts`);
+    } else {
+      dispatch(addContact({ name, number, id: nanoid() }));
+      form.reset();
+    }
   };
 
   const { form, label, input, addBtn } = styles;
