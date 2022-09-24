@@ -9,9 +9,6 @@ export const App = () => {
 
   return (
     <div className={wrapper}>
-      <h1 style={{ textAlign: 'center' }}>
-        React homework 6 - Redux phonebook
-      </h1>
       <Section title="Phonebook">
         <PhoneBook />
       </Section>

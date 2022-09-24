@@ -6,17 +6,22 @@ import styles from './ContactItem.module.css'
 
 export const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
-  const { contactItem, contactName, btn } = styles
+  const { contactItem, contactName, contactWrapper, btn } = styles
   return (
     <li className={contactItem}>
-      <span className={contactName}>{name}: {number}</span>{' '}
-      <div>
-        <a href={`tel:${number}`}><button className={btn}> Call</button></a>
+      <div className={contactWrapper}>
+      
+        <div className={contactWrapper}>
+          <span className={contactName}>{name}: {number}</span>{' '}
+            <a href={`tel:${number}`}><button className={btn}>Call</button></a>
+        </div>
+        
         <button type="button" className={btn} onClick={() => {
-          dispatch(deleteContact(id))}}>
-          Delete
-        </button>
+            dispatch(deleteContact(id))}}>
+            Delete
+          </button>
       </div>
+        
     </li>
   );
 };

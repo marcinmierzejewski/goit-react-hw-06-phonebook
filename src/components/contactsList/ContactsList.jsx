@@ -4,7 +4,7 @@ import styles from './ContactsList.module.css';
 
 export const ContactsList = () => {
   const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.filter.filter);
+  const filter = useSelector(state => state.filter);
   const viewContacts = contacts
     .filter(cont => cont.name.toLowerCase().includes(filter))
     .sort((first, second) => first.name.localeCompare(second.name));

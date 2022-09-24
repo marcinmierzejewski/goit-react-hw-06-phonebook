@@ -1,10 +1,8 @@
 .form{
   display: block;
-  max-width: 360px;
+  max-width: 460px;
   margin: 0 auto;
   padding: 20px 40px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 10px rgb(39, 37, 37);
 }
 
 .label {
@@ -12,12 +10,13 @@
   width: 100%;
   margin: 0 auto;
   margin-bottom: 20px;
-  
+  color: rgb(75, 62, 142);
+  font-weight: 500;  
 }
 
 .input {  
   display: block;
-  width: 280px;
+  width: 100%;
   height: 30px;
   margin-top: 5px;
   border: 2px solid rgba(188, 184, 184, 0.989);
@@ -41,11 +40,17 @@
     border-radius: 3px;
     cursor: pointer;
     box-shadow: 2px 2px 5px rgb(97, 92, 92);
-    transition: all 50ms linear;
+    transition: all 250ms linear;
+    font-weight: 500;
 }
 
 .addBtn:active {
   transform: translate(2px, 2px);
   box-shadow: 0px 0px 3px rgb(97, 92, 92);
   background-color: rgb(146, 146, 214);
+}
+
+.addBtn:hover {
+  background-color: rgb(146, 146, 214);  
+  color: white
 }
